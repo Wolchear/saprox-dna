@@ -1,0 +1,23 @@
+max_threads: 4
+raw_nanopore_data: "seq6_nikita_fungiITS/seq6/20260605_1339_MN48615_axh386_c53dccc6/"
+
+
+data:
+  base_root: "data"
+  dirs:
+    raw: "raw"
+    references: "references"
+    trimmed: 'trimmed'
+
+workflow:
+  base_root: "workflow"
+  dirs:
+    rules: "rules"
+    scripts: "scripts"
+    lib: "lib"
+    envs: 'envs'
+
+output:
+  base_root: "output"
+  dirs:
+    pass: 'pass'
