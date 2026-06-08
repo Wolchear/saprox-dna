@@ -1,11 +1,12 @@
 max_threads: 4
-raw_nanopore_data: "seq6_nikita_fungiITS/seq6/20260605_1339_MN48615_axh386_c53dccc6/"
+raw_nanopore_data: "seq6_nikita_fungiITS/seq6/20260605_1339_MN48615_axh386_c53dccc6"
 
 
 data:
   base_root: "data"
   dirs:
     raw: "raw"
+    barcodes: 'merged_barcodes'
     references: "references"
     trimmed: 'trimmed'
 

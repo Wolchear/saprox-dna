@@ -1,3 +1,8 @@
 .snakemake/*
 seq6_nikita_fungiITS/*
 seq6_nikita_fungiITS*
+
+data/merged_barcodes/*
+logs/*
+
+__pycache__
