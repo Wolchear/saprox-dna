@@ -1,11 +1,16 @@
+import pandas as pd
 from workflow.lib.utils import get_path
 
 NANOPORE_DATA_DIR = config['raw_nanopore_data']
-BARCODES_DIR = get_path(config['data'], 'barcodes')
+RAW_BARCODES_DIR = get_path(config['data'], 'barcodes')
+SEQ_STATS = get_path(config['qc'], 'seq_stats')
+
+samples = pd.read_csv("config/samples.tsv", sep="\t")
+BARCODE_IDS = samples["barcode"].tolist()
 
 rule merge_barcodes:
     output:
-        f"{BARCODES_DIR}/{{barcode}}.fastq.gz"
+        f"{RAW_BARCODES_DIR}/{{barcode}}.fastq.gz"
     threads: 1
     log:
         f"logs/process_raw_data/merge_barcodes/{{barcode}}.log"
@@ -24,4 +29,34 @@ rule merge_barcodes:
             if [ -d "{params.failed_dir}" ]; then
                 find "{params.failed_dir}" -name "*.fastq.gz" -type f -exec cat {{}} + >> {output} 2>> {log}
             fi
+        """
+
+TABLE_INPUT = {
+    'raw_stats': RAW_BARCODES_DIR,
+}
+
+rule get_seqkit_stats:
+    input:
+        expand(
+            "{barcode_dir}/{barcode}.fastq.gz",
+            barcode_dir = lambda wc: TABLE_INPUT[wc.table],
+            barcode = BARCODE_IDS
+        )
+    output:
+        f"{SEQ_STATS}/{{table}}.tsv"
+    threads: max(1, config['max_threads'])
+    conda:
+        '../envs/process_raw_data.yml'
+    log:
+        f"logs/process_raw_data/get_seqkit_stats/{{table}}.log"
+    shell:
+        r"""
+        seqkit stats \
+            -j {threads} \
+            --all \
+            --tabular \
+            --basename \
+            -o {output} \
+            {input} \
+            > {log} 2>&1
         """

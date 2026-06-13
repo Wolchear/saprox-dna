@@ -6,21 +6,20 @@ from workflow.lib.utils import get_path
 
 configfile: "config/config.yaml"
 
-BARCODE_IDS = (
-    [f"barcode{i:02d}" for i in range(1, 15)] +
-    [f"barcode{i:02d}" for i in range(17, 25)] +
-    ["unclassified"]
-)
+samples = pd.read_csv("config/samples.tsv", sep="\t")
+BARCODE_IDS = samples["barcode"].tolist()
 
-BARCODES = expand(
-    "{barcode_dir}/{barcode}.fastq.gz",
-    barcode_dir = get_path(config['data'], 'barcodes'),
-    barcode=BARCODE_IDS
+
+STAT_TABLES = expand(
+    "{tables_dir}/{table}.tsv",
+    tables_dir = get_path(config['qc'], 'seq_stats'),
+    table = ['raw_stats']
 )
 
 rule all:
     input:
-        BARCODES
+        STAT_TABLES,
+
 
 RULES_DIR = get_path(config['workflow'], "rules")
 

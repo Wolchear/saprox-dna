@@ -18,6 +18,11 @@ workflow:
     lib: "lib"
     envs: 'envs'
 
+qc:
+  base_root: 'QC'
+  dirs:
+    seq_stats: 'seq_stats'
+
 output:
   base_root: "output"
   dirs:
