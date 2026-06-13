@@ -13,7 +13,7 @@ BARCODE_IDS = samples["barcode"].tolist()
 STAT_TABLES = expand(
     "{tables_dir}/{table}.tsv",
     tables_dir = get_path(config['qc'], 'seq_stats'),
-    table = ['raw_stats']
+    table = ['raw_stats', 'trimmed_stats']
 )
 
 rule all:

@@ -8,7 +8,7 @@ data:
     raw: "raw"
     barcodes: 'merged_barcodes'
     references: "references"
-    trimmed: 'trimmed'
+    trimmed: 'trimmed_barcodes'
 
 workflow:
   base_root: "workflow"
@@ -22,6 +22,7 @@ qc:
   base_root: 'QC'
   dirs:
     seq_stats: 'seq_stats'
+    trimming_reports: 'trimming_reports'
 
 output:
   base_root: "output"
