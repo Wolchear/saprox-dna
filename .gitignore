@@ -2,7 +2,7 @@
 seq6_nikita_fungiITS/*
 seq6_nikita_fungiITS*
 
-data/merged_barcodes/*
+data/*
 logs/*
 
 __pycache__
