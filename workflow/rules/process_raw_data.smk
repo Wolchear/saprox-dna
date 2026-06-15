@@ -4,13 +4,15 @@ from workflow.lib.utils import get_path
 NANOPORE_DATA_DIR = config['raw_nanopore_data']
 RAW_BARCODES_DIR = get_path(config['data'], 'barcodes')
 TRIMMED_ADAPTERS_DIR = get_path(config['data'], 'trimmed_adapters')
+TRIMMED_BARCODES_DIR = get_path(config['data'], 'trimmed_barcodes')
+TRIMMED_PRIMERS_DIR = get_path(config['data'], 'trimmed_primers')
 
 FA2TSV_DIR = get_path(config['qc'], 'fa2tsv')
 LOCATE_DIR = get_path(config['qc'], 'locate')
 JOINS_DIR = get_path(config['qc'], 'joins')
 JOINS_PLOTS_DIR = get_path(config['qc'], 'contamination_plots')
 STATUS = "before|after"
-FASTA_DIRS = "merged_barcodes|trimmed_adapters"
+FASTA_DIRS = "trimmed_adapters|trimmed_barcodes"
 SEQ_STATS = get_path(config['qc'], 'seq_stats')
 REPORTS_DIR = get_path(config['qc'], 'trimming_reports')
 
@@ -45,9 +47,22 @@ rule merge_barcodes:
             fi
         """
 
+INPUT_FASTA = {
+    "before":{
+        "trimmed_adapters": "merged_barcodes",
+        "trimmed_barcodes": "trimmed_adapters",
+        "trimmed_primers": "trimmed_barcodes"
+    },
+    "after": {
+        "trimmed_adapters": "trimmed_adapters",
+        "trimmed_barcodes": "trimmed_barcodes",
+        "trimmed_primers": "trimmed_primers"
+    }
+}
+
 rule get_seqkit_fx2tab:
     input:
-        f"data/{{fasta_dir}}/{{barcode}}.fastq.gz"
+        lambda wc: f"data/{INPUT_FASTA[wc.status][wc.fasta_dir]}/{{barcode}}.fastq.gz"
     output:
         f"{FA2TSV_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     threads: max(1, config['max_threads'] // 2)
@@ -67,18 +82,21 @@ rule get_seqkit_fx2tab:
         """
 
 ADAPTERS = {
-    "before":{
-        "merged_barcodes": "adapters.fasta",
-        "trimmed_adapters": "barcodes.fasta"
-    },
-    "after": {
-        "trimmed_adapters": "adapters.fasta"
-    }
+        "trimmed_adapters": "adapters.fasta",
+        "trimmed_barcodes": "barcodes.fasta",
+        "trimmed_primers": "primers.fasta"
 }
+
+MISMATCH = {
+        "trimmed_adapters": "3",
+        "trimmed_barcodes": "1",
+        "trimmed_primers": "1"
+}
+
 
 rule get_seqkit_locate:
     input:
-        f"data/{{fasta_dir}}/{{barcode}}.fastq.gz"
+        lambda wc: f"data/{INPUT_FASTA[wc.status][wc.fasta_dir]}/{{barcode}}.fastq.gz"
     output:
         f"{LOCATE_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     threads: max(1, config['max_threads'] // 2)
@@ -90,11 +108,12 @@ rule get_seqkit_locate:
     conda:
         '../envs/process_raw_data.yml'
     params:
-        adapters_file = lambda wc: f"config/{ADAPTERS[wc.status][wc.fasta_dir]}"
+        adapters_file = lambda wc: f"config/{ADAPTERS[wc.fasta_dir]}",
+        m = lambda wc: MISMATCH[wc.fasta_dir]
     shell:
         r"""
         {{
-            seqkit locate -m 3 \
+            seqkit locate -m {params.m} \
                 -f {params.adapters_file} \
                 {input} \
             | awk 'NR>1 {{print $1,$2,$3,$4,$5,$6,$7}}' OFS='\t' \
@@ -186,10 +205,41 @@ rule trim_ends:
             > {log} 2>&1
         """
 
+rule trim_barcodes:
+    input:
+        f"{TRIMMED_ADAPTERS_DIR}/{{barcode}}.fastq.gz",
+    output:
+        fasta = f"{TRIMMED_BARCODES_DIR}/{{barcode}}.fastq.gz",
+        json = f"{REPORTS_DIR}/barcodes/{{barcode}}.json",
+        html = f"{REPORTS_DIR}/barcodes/{{barcode}}.html",
+    threads: max(1, config['max_threads'] // 2)
+    conda:
+        '../envs/process_raw_data.yml'
+    log:
+        f"logs/process_raw_data/trim_barcodes/{{barcode}}.log"
+    params:
+        fw = lambda wc: BARCODE_FW[wc.barcode],
+        rev = lambda wc: BARCODE_REV[wc.barcode]
+    shell:
+        r"""
+        fastplong -i {input} -o {output.fasta} \
+            --thread {threads} \
+            -d 0.20 \
+            -s {params.fw} \
+            -e {params.rev} \
+            --length_required 500 \
+            --length_limit 2500 \
+            --verbose \
+            --json {output.json} \
+            --html {output.html} \
+            > {log} 2>&1
+        """
+
 
 TABLE_INPUT = {
     'raw_stats': RAW_BARCODES_DIR,
-    'trimmed_adapters_stats': TRIMMED_ADAPTERS_DIR
+    'trimmed_adapters_stats': TRIMMED_ADAPTERS_DIR,
+    'trimmed_barcodes_stats': TRIMMED_BARCODES_DIR
 }
 
 rule get_seqkit_stats:
