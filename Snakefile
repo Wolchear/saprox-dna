@@ -16,17 +16,17 @@ STAT_TABLES = expand(
     table = ['raw_stats', 'trimmed_stats']
 )
 
-JOINS_TABLES = expand(
-    "{tables_dir}/{sub_dir}/{table}.tsv",
-    tables_dir = get_path(config['qc'], 'joins'),
-    sub_dir = ['merged_barcodes'],
+JOINS_PLOTS = expand(
+    "{tables_dir}/{sub_dir}/{table}.png",
+    tables_dir = get_path(config['qc'], 'contamination_plots'),
+    sub_dir = ['merged_barcodes', 'trimmed_barcodes'],
     table = BARCODE_IDS
 )
 
 rule all:
     input:
         STAT_TABLES,
-        JOINS_TABLES
+        JOINS_PLOTS
 
 RULES_DIR = get_path(config['workflow'], "rules")
 

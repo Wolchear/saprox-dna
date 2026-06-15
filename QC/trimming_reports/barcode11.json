@@ -33,7 +33,7 @@
 		"adapter_trimmed_reads": 20845,
 		"adapter_trimmed_bases": 893443,
 		"read_start_adapter": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT",
-		"read_end_adapter": "GCAATACGTAACTGAACGAAGTACAGG",
+		"read_end_adapter": "ACGTAACTGAACGAAGTACAGG",
 		"read_adapter_counts": {"TGTACTTCGTTCAGTTACGTATTGCT":250, "CTGTACTTCGTTCAGTTACGTATTGCT":582, "CCTGTACTTCGTTCAGTTACGTATTGCT":532, "TCCTGTACTTCGTTCAGTTACGTATTGCT":810, "TTCCTGTACTTCGTTCAGTTACGTATTGCT":1456, "TTTCCTGTACTTCGTTCAGTTACGTATTGCT":2022, "TTTTCCTGTACTTCGTTCAGTTACGTATTGCT":3820, "TTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":3180, "TTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":2514, "TTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":1603, "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":3807, "others":269}
 	},
 	"read_before_filtering": {
@@ -212,5 +212,5 @@
 			"GGGAA":80248,			"GGGAT":28690,			"GGGAC":46755,			"GGGAG":69816,			"GGGTA":16869,			"GGGTT":22895,			"GGGTC":64170,			"GGGTG":29629,			"GGGCA":75161,			"GGGCT":60508,			"GGGCC":73907,			"GGGCG":166972,			"GGGGA":58449,			"GGGGT":20582,			"GGGGC":159450,			"GGGGG":77432
 		}
 	},
-	"command": "fastplong -i data/merged_barcodes/barcode11.fastq.gz -o data/trimmed_barcodes/barcode11.fastq.gz --thread 2 -d 0.20 -s TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT -e GCAATACGTAACTGAACGAAGTACAGG --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode11.json --html QC/trimming_reports/barcode11.html "
+	"command": "fastplong -i data/merged_barcodes/barcode11.fastq.gz -o data/trimmed_barcodes/barcode11.fastq.gz --thread 2 -d 0.20 -s TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT -e ACGTAACTGAACGAAGTACAGG --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode11.json --html QC/trimming_reports/barcode11.html "
 }

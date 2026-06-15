@@ -3,9 +3,9 @@ raw_nanopore_data: "seq6_nikita_fungiITS/seq6/20260605_1339_MN48615_axh386_c53dc
 
 #source https://nanoporetech.com/document/chemistry-technical-document
 adapters:
-  "5": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT"
-  "5-core": "CCTGTACTTCGTTCAGTTACGTATTGCT"
-  "3": "GCAATACGTAACTGAACGAAGTACAGG"
+  "top": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT"
+  "top-core": "CCTGTACTTCGTTCAGTTACGTATTGCT"
+  "bottom": "ACGTAACTGAACGAAGTACAGG"
 
 
 
@@ -33,6 +33,7 @@ qc:
     fa2tsv: 'contamination/length'
     locate: 'contamination/hits'
     joins: "contamination/joins"
+    contamination_plots: "contamination/plots"
 
 output:
   base_root: "output"

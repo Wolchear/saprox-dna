@@ -33,7 +33,7 @@
 		"adapter_trimmed_reads": 3,
 		"adapter_trimmed_bases": 131,
 		"read_start_adapter": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT",
-		"read_end_adapter": "GCAATACGTAACTGAACGAAGTACAGG",
+		"read_end_adapter": "ACGTAACTGAACGAAGTACAGG",
 		"read_adapter_counts": {"TCCTGTACTTCGTTCAGTTACGTATTGCT":1, "TTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":1, "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":1}
 	},
 	"read_before_filtering": {
@@ -212,5 +212,5 @@
 			"GGGAA":14,			"GGGAT":6,			"GGGAC":3,			"GGGAG":4,			"GGGTA":3,			"GGGTT":1,			"GGGTC":3,			"GGGTG":6,			"GGGCA":3,			"GGGCT":3,			"GGGCC":2,			"GGGCG":11,			"GGGGA":8,			"GGGGT":1,			"GGGGC":6,			"GGGGG":6
 		}
 	},
-	"command": "fastplong -i data/merged_barcodes/barcode07.fastq.gz -o data/trimmed_barcodes/barcode07.fastq.gz --thread 2 -d 0.20 -s TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT -e GCAATACGTAACTGAACGAAGTACAGG --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode07.json --html QC/trimming_reports/barcode07.html "
+	"command": "fastplong -i data/merged_barcodes/barcode07.fastq.gz -o data/trimmed_barcodes/barcode07.fastq.gz --thread 2 -d 0.20 -s TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT -e ACGTAACTGAACGAAGTACAGG --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode07.json --html QC/trimming_reports/barcode07.html "
 }

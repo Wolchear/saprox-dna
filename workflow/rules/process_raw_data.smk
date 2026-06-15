@@ -8,12 +8,15 @@ TRIMMED_BARCODES_DIR = get_path(config['data'], 'trimmed')
 FA2TSV_DIR = get_path(config['qc'], 'fa2tsv')
 LOCATE_DIR = get_path(config['qc'], 'locate')
 JOINS_DIR = get_path(config['qc'], 'joins')
+JOINS_PLOTS_DIR = get_path(config['qc'], 'contamination_plots')
 
 SEQ_STATS = get_path(config['qc'], 'seq_stats')
 REPORTS_DIR = get_path(config['qc'], 'trimming_reports')
 
 samples = pd.read_csv("config/samples.tsv", sep="\t")
 BARCODE_IDS = samples["barcode"].tolist()
+
+SCRIPTS = get_path(config['workflow'], 'scripts')
 
 rule merge_barcodes:
     output:
@@ -60,6 +63,7 @@ rule get_seqkit_fx2tab:
 
 ADAPTERS = {
     "merged_barcodes": "adapters.fasta",
+    "trimmed_barcodes": "adapters.fasta"
 }
 
 rule get_seqkit_locate:
@@ -69,7 +73,7 @@ rule get_seqkit_locate:
         f"{LOCATE_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
     threads: max(1, config['max_threads'] // 2)
     wildcard_constraints:
-        fasta_dir="merged_barcodes"
+        fasta_dir="merged_barcodes|trimmed_barcodes"
     log:
         f"logs/process_raw_data/get_seqkit_locate/{{fasta_dir}}/{{barcode}}.log"
     conda:
@@ -87,15 +91,17 @@ rule get_seqkit_locate:
         }} > {output} 2> {log}
         """
 
-rule merge_raw_hits:
+rule merge_hits:
     input:
-        hits = f"{LOCATE_DIR}/merged_barcodes/{{barcode}}.tsv",
-        length = f"{FA2TSV_DIR}/merged_barcodes/{{barcode}}.tsv"
+        hits = f"{LOCATE_DIR}/{{fasta_dir}}/{{barcode}}.tsv",
+        length = f"{FA2TSV_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
     output:
-        f"{JOINS_DIR}/merged_barcodes/{{barcode}}.tsv"
+        f"{JOINS_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
     threads: 1
+    wildcard_constraints:
+        fasta_dir="merged_barcodes|trimmed_barcodes"
     log:
-        f"logs/process_raw_data/merge_raw_hits/merged_barcodes/{{barcode}}.log"
+        f"logs/process_raw_data/merge_raw_hits/{{fasta_dir}}/{{barcode}}.log"
     conda:
         '../envs/process_raw_data.yml'
     shell:
@@ -119,6 +125,28 @@ rule merge_raw_hits:
         }} > {output} 2> {log}
         """
 
+rule plot_joins:
+    input:
+        f"{JOINS_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+    output:
+        f"{JOINS_PLOTS_DIR}/{{fasta_dir}}/{{barcode}}.png"
+    threads: 1
+    wildcard_constraints:
+        fasta_dir="merged_barcodes|trimmed_barcodes"
+    log:
+        f"logs/process_raw_data/plot_joins/{{fasta_dir}}/{{barcode}}.log"
+    conda:
+        '../envs/process_raw_data.yml'
+    params:
+        script = f"{SCRIPTS}/plot_body_coverage.py"
+    shell:
+        """
+        python3 {params.script} --input {input} --output {output} > {log} 2>&1
+        """
+            
+            
+
+
 rule trim_adapters:
     input:
         f"{RAW_BARCODES_DIR}/{{barcode}}.fastq.gz"
@@ -132,8 +160,8 @@ rule trim_adapters:
     log:
         f"logs/process_raw_data/trim_adapters/{{barcode}}.log"
     params:
-        fwd = config['adapters']['5'],
-        rev = config['adapters']['3']
+        fwd = config['adapters']['top'],
+        rev = config['adapters']['bottom']
     shell:
         r"""
         fastplong -i {input} -o {output.fasta} \
