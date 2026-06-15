@@ -1,3 +1,3 @@
-[submodule "external/amplicon_sorter"]
-	path = external/amplicon_sorter
+[submodule "workflow/external/amplicon_sorter"]
+	path = workflow/external/amplicon_sorter
 	url = https://github.com/avierstr/amplicon_sorter.git
