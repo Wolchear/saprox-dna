@@ -19,6 +19,7 @@ data:
     trimmed_adapters: "trimmed_adapters"
     trimmed_primers: "trimmed_primers"
 
+
 workflow:
   base_root: "workflow"
   dirs:
@@ -36,6 +37,7 @@ qc:
     locate: 'contamination/hits'
     joins: "contamination/joins"
     contamination_plots: "contamination/plots"
+    nanoplots: "nanoplots"
 
 output:
   base_root: "output"

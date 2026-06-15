@@ -24,11 +24,17 @@ JOINS_PLOTS = expand(
     table = BARCODE_IDS
 )
 
+NANOPLOTS = expand(
+    "{nanoplots_dir}/{barcode}/{barcode}_NanoPlot-report.html",
+    nanoplots_dir = get_path(config['qc'], 'nanoplots'),
+    barcode = BARCODE_IDS
+)
+
 rule all:
     input:
         STAT_TABLES,
         JOINS_PLOTS,
-
+        NANOPLOTS
 
 RULES_DIR = get_path(config['workflow'], "rules")
 

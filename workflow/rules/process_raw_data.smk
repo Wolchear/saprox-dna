@@ -16,6 +16,8 @@ FASTA_DIRS = "trimmed_adapters|trimmed_barcodes|trimmed_primers"
 SEQ_STATS = get_path(config['qc'], 'seq_stats')
 REPORTS_DIR = get_path(config['qc'], 'trimming_reports')
 
+NANOPLOTS_DIR = get_path(config['qc'], 'nanoplots')
+
 samples = pd.read_csv("config/samples.tsv", sep="\t")
 BARCODE_IDS = samples["barcode"].tolist()
 
@@ -297,3 +299,31 @@ rule get_seqkit_stats:
             {input} \
             > {log} 2>&1
         """
+
+rule plot_nanoplots:
+    input:
+        fasta = f"{TRIMMED_PRIMERS_DIR}/{{barcode}}.fastq.gz"
+    output:
+        f"{NANOPLOTS_DIR}/{{barcode}}/{{barcode}}_NanoPlot-report.html"
+    threads: max(1, config['max_threads'])
+    conda:
+        '../envs/nanoplot.yml'
+    log:
+        f"logs/process_raw_data/plot_nanoplots/{{barcode}}.log"
+    params:
+        prefix = lambda wc: f"{wc.barcode}_",
+        title = lambda wc: f"{wc.barcode}_trimmed_primers",
+        outdir = lambda wc: f"{NANOPLOTS_DIR}/{wc.barcode}"
+    shell:
+        r"""
+        NanoPlot \
+            --fastq {input.fasta} \
+            --outdir {params.outdir} \
+            --threads {threads} \
+            --plots dot \
+            --N50 \
+            --title {params.title} \
+            --prefix {params.prefix} \
+            > {log} 2>&1
+        """
+
