@@ -1,6 +1,13 @@
 max_threads: 4
 raw_nanopore_data: "seq6_nikita_fungiITS/seq6/20260605_1339_MN48615_axh386_c53dccc6"
 
+#source https://nanoporetech.com/document/chemistry-technical-document
+adapters:
+  "5": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT"
+  "5-core": "CCTGTACTTCGTTCAGTTACGTATTGCT"
+  "3": "GCAATACGTAACTGAACGAAGTACAGG"
+
+
 
 data:
   base_root: "data"
@@ -23,6 +30,9 @@ qc:
   dirs:
     seq_stats: 'seq_stats'
     trimming_reports: 'trimming_reports'
+    fa2tsv: 'contamination/length'
+    locate: 'contamination/hits'
+    joins: "contamination/joins"
 
 output:
   base_root: "output"
