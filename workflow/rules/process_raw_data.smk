@@ -12,7 +12,7 @@ LOCATE_DIR = get_path(config['qc'], 'locate')
 JOINS_DIR = get_path(config['qc'], 'joins')
 JOINS_PLOTS_DIR = get_path(config['qc'], 'contamination_plots')
 STATUS = "before|after"
-FASTA_DIRS = "trimmed_adapters|trimmed_barcodes"
+FASTA_DIRS = "trimmed_adapters|trimmed_barcodes|trimmed_primers"
 SEQ_STATS = get_path(config['qc'], 'seq_stats')
 REPORTS_DIR = get_path(config['qc'], 'trimming_reports')
 
@@ -235,11 +235,41 @@ rule trim_barcodes:
             > {log} 2>&1
         """
 
+rule trim_primers:
+    input:
+        f"{TRIMMED_BARCODES_DIR}/{{barcode}}.fastq.gz"
+    output:
+        fasta = f"{TRIMMED_PRIMERS_DIR}/{{barcode}}.fastq.gz",
+        json = f"{REPORTS_DIR}/primers/{{barcode}}.json",
+        html = f"{REPORTS_DIR}/primers/{{barcode}}.html",
+    threads: max(1, config['max_threads'] // 2)
+    conda:
+        '../envs/process_raw_data.yml'
+    log:
+        f"logs/process_raw_data/trim_primers/{{barcode}}.log"
+    params:
+        adapters_file =  f"config/primers_to_trim.fasta"
+    shell:
+        r"""
+        fastplong -i {input} -o {output.fasta} \
+            --thread {threads} \
+            -d 0.20 \
+            -a {params.adapters_file} \
+            --length_required 500 \
+            --trimming_extension 0 \
+            --length_limit 2500 \
+            --verbose \
+            --json {output.json} \
+            --html {output.html} \
+            > {log} 2>&1
+        """
+
 
 TABLE_INPUT = {
     'raw_stats': RAW_BARCODES_DIR,
     'trimmed_adapters_stats': TRIMMED_ADAPTERS_DIR,
-    'trimmed_barcodes_stats': TRIMMED_BARCODES_DIR
+    'trimmed_barcodes_stats': TRIMMED_BARCODES_DIR,
+    'trimmed_primers_stats': TRIMMED_PRIMERS_DIR
 }
 
 rule get_seqkit_stats:
