@@ -18,6 +18,7 @@ data:
     trimmed_barcodes: 'trimmed_barcodes'
     trimmed_adapters: "trimmed_adapters"
     trimmed_primers: "trimmed_primers"
+    filtered_barcodes: "filtered_barcodes"
 
 
 workflow:

@@ -6,6 +6,7 @@ RAW_BARCODES_DIR = get_path(config['data'], 'barcodes')
 TRIMMED_ADAPTERS_DIR = get_path(config['data'], 'trimmed_adapters')
 TRIMMED_BARCODES_DIR = get_path(config['data'], 'trimmed_barcodes')
 TRIMMED_PRIMERS_DIR = get_path(config['data'], 'trimmed_primers')
+FILTERED_BARCODES_DIR= get_path(config['data'], 'filtered_barcodes')
 
 FA2TSV_DIR = get_path(config['qc'], 'fa2tsv')
 LOCATE_DIR = get_path(config['qc'], 'locate')
@@ -271,7 +272,8 @@ TABLE_INPUT = {
     'raw_stats': RAW_BARCODES_DIR,
     'trimmed_adapters_stats': TRIMMED_ADAPTERS_DIR,
     'trimmed_barcodes_stats': TRIMMED_BARCODES_DIR,
-    'trimmed_primers_stats': TRIMMED_PRIMERS_DIR
+    'trimmed_primers_stats': TRIMMED_PRIMERS_DIR,
+    'filtered_barcodes_stats': FILTERED_BARCODES_DIR
 }
 
 rule get_seqkit_stats:
@@ -327,3 +329,28 @@ rule plot_nanoplots:
             > {log} 2>&1
         """
 
+rule final_filtering:
+    input:
+        f"{TRIMMED_PRIMERS_DIR}/{{barcode}}.fastq.gz"
+    output:
+        fasta = f"{FILTERED_BARCODES_DIR}/{{barcode}}.fastq.gz",
+        json = f"{REPORTS_DIR}/final_filtering/{{barcode}}.json",
+        html = f"{REPORTS_DIR}/final_filtering/{{barcode}}.html",
+    threads: max(1, config['max_threads'] // 2)
+    conda:
+        '../envs/process_raw_data.yml'
+    log:
+        f"logs/process_raw_data/final_filtering/{{barcode}}.log"
+    shell:
+        r"""
+        fastplong -i {input} -o {output.fasta} \
+            --disable_adapter_trimming \
+            --thread {threads} \
+            --mean_qual 11 \
+            --length_required 500 \
+            --length_limit 1500 \
+            --verbose \
+            --json {output.json} \
+            --html {output.html} \
+            > {log} 2>&1
+        """

@@ -13,7 +13,13 @@ BARCODE_IDS = samples["barcode"].tolist()
 STAT_TABLES = expand(
     "{tables_dir}/{table}.tsv",
     tables_dir = get_path(config['qc'], 'seq_stats'),
-    table = ['raw_stats', 'trimmed_adapters_stats', 'trimmed_barcodes_stats', 'trimmed_primers_stats']
+    table = [
+        'raw_stats',
+        'trimmed_adapters_stats',
+        'trimmed_barcodes_stats',
+        'trimmed_primers_stats',
+        "filtered_barcodes_stats"
+    ]
 )
 
 JOINS_PLOTS = expand(
@@ -30,11 +36,18 @@ NANOPLOTS = expand(
     barcode = BARCODE_IDS
 )
 
+FILTERED_BARCODES = expand(
+    "{filtered_dir}/{barcode}.fastq.gz",
+    filtered_dir = get_path(config['data'], 'filtered_barcodes'),
+    barcode = BARCODE_IDS
+)
+
 rule all:
     input:
         STAT_TABLES,
         JOINS_PLOTS,
-        NANOPLOTS
+        NANOPLOTS,
+        FILTERED_BARCODES
 
 RULES_DIR = get_path(config['workflow'], "rules")
 
