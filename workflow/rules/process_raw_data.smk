@@ -3,18 +3,22 @@ from workflow.lib.utils import get_path
 
 NANOPORE_DATA_DIR = config['raw_nanopore_data']
 RAW_BARCODES_DIR = get_path(config['data'], 'barcodes')
-TRIMMED_BARCODES_DIR = get_path(config['data'], 'trimmed')
+TRIMMED_ADAPTERS_DIR = get_path(config['data'], 'trimmed_adapters')
 
 FA2TSV_DIR = get_path(config['qc'], 'fa2tsv')
 LOCATE_DIR = get_path(config['qc'], 'locate')
 JOINS_DIR = get_path(config['qc'], 'joins')
 JOINS_PLOTS_DIR = get_path(config['qc'], 'contamination_plots')
-
+STATUS = "before|after"
+FASTA_DIRS = "merged_barcodes|trimmed_adapters"
 SEQ_STATS = get_path(config['qc'], 'seq_stats')
 REPORTS_DIR = get_path(config['qc'], 'trimming_reports')
 
 samples = pd.read_csv("config/samples.tsv", sep="\t")
 BARCODE_IDS = samples["barcode"].tolist()
+
+BARCODE_FW = dict(zip(samples["barcode"], samples["Forward"]))
+BARCODE_REV = dict(zip(samples["barcode"], samples["Reverse"]))
 
 SCRIPTS = get_path(config['workflow'], 'scripts')
 
@@ -45,12 +49,13 @@ rule get_seqkit_fx2tab:
     input:
         f"data/{{fasta_dir}}/{{barcode}}.fastq.gz"
     output:
-        f"{FA2TSV_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+        f"{FA2TSV_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     threads: max(1, config['max_threads'] // 2)
     wildcard_constraints:
-        fasta_dir="merged_barcodes|trimmed_barcodes"
+        fasta_dir=FASTA_DIRS,
+        status = STATUS
     log:
-        f"logs/process_raw_data/get_seqkit_fx2tab/{{fasta_dir}}/{{barcode}}.log"
+        f"logs/process_raw_data/get_seqkit_fx2tab/{{fasta_dir}}/{{status}}/{{barcode}}.log"
     conda:
         '../envs/process_raw_data.yml'
     shell:
@@ -62,24 +67,30 @@ rule get_seqkit_fx2tab:
         """
 
 ADAPTERS = {
-    "merged_barcodes": "adapters.fasta",
-    "trimmed_barcodes": "adapters.fasta"
+    "before":{
+        "merged_barcodes": "adapters.fasta",
+        "trimmed_adapters": "barcodes.fasta"
+    },
+    "after": {
+        "trimmed_adapters": "adapters.fasta"
+    }
 }
 
 rule get_seqkit_locate:
     input:
         f"data/{{fasta_dir}}/{{barcode}}.fastq.gz"
     output:
-        f"{LOCATE_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+        f"{LOCATE_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     threads: max(1, config['max_threads'] // 2)
     wildcard_constraints:
-        fasta_dir="merged_barcodes|trimmed_barcodes"
+        fasta_dir=FASTA_DIRS,
+        status = STATUS
     log:
-        f"logs/process_raw_data/get_seqkit_locate/{{fasta_dir}}/{{barcode}}.log"
+        f"logs/process_raw_data/get_seqkit_locate/{{fasta_dir}}/{{status}}/{{barcode}}.log"
     conda:
         '../envs/process_raw_data.yml'
     params:
-        adapters_file = lambda wc: f"config/{ADAPTERS[wc.fasta_dir]}"
+        adapters_file = lambda wc: f"config/{ADAPTERS[wc.status][wc.fasta_dir]}"
     shell:
         r"""
         {{
@@ -93,15 +104,16 @@ rule get_seqkit_locate:
 
 rule merge_hits:
     input:
-        hits = f"{LOCATE_DIR}/{{fasta_dir}}/{{barcode}}.tsv",
-        length = f"{FA2TSV_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+        hits = f"{LOCATE_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv",
+        length = f"{FA2TSV_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     output:
-        f"{JOINS_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+        f"{JOINS_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     threads: 1
     wildcard_constraints:
-        fasta_dir="merged_barcodes|trimmed_barcodes"
+        fasta_dir=FASTA_DIRS,
+        status = STATUS
     log:
-        f"logs/process_raw_data/merge_raw_hits/{{fasta_dir}}/{{barcode}}.log"
+        f"logs/process_raw_data/merge_raw_hits/{{fasta_dir}}/{{status}}/{{barcode}}.log"
     conda:
         '../envs/process_raw_data.yml'
     shell:
@@ -127,14 +139,15 @@ rule merge_hits:
 
 rule plot_joins:
     input:
-        f"{JOINS_DIR}/{{fasta_dir}}/{{barcode}}.tsv"
+        f"{JOINS_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.tsv"
     output:
-        f"{JOINS_PLOTS_DIR}/{{fasta_dir}}/{{barcode}}.png"
+        f"{JOINS_PLOTS_DIR}/{{fasta_dir}}/{{status}}/{{barcode}}.png"
     threads: 1
     wildcard_constraints:
-        fasta_dir="merged_barcodes|trimmed_barcodes"
+        fasta_dir=FASTA_DIRS,
+        status = STATUS
     log:
-        f"logs/process_raw_data/plot_joins/{{fasta_dir}}/{{barcode}}.log"
+        f"logs/process_raw_data/plot_joins/{{fasta_dir}}/{{status}}/{{barcode}}.log"
     conda:
         '../envs/process_raw_data.yml'
     params:
@@ -145,30 +158,26 @@ rule plot_joins:
         """
             
             
-
-
-rule trim_adapters:
+rule trim_ends:
     input:
         f"{RAW_BARCODES_DIR}/{{barcode}}.fastq.gz"
     output:
-        fasta = f"{TRIMMED_BARCODES_DIR}/{{barcode}}.fastq.gz",
+        fasta = f"{TRIMMED_ADAPTERS_DIR}/{{barcode}}.fastq.gz",
         json = f"{REPORTS_DIR}/{{barcode}}.json",
         html = f"{REPORTS_DIR}/{{barcode}}.html",
     threads: max(1, config['max_threads'] // 2)
     conda:
         '../envs/process_raw_data.yml'
     log:
-        f"logs/process_raw_data/trim_adapters/{{barcode}}.log"
+        f"logs/process_raw_data/trim_ends/{{barcode}}.log"
     params:
-        fwd = config['adapters']['top'],
-        rev = config['adapters']['bottom']
+        adapters_file =  f"config/adapters.fasta"
     shell:
         r"""
         fastplong -i {input} -o {output.fasta} \
             --thread {threads} \
             -d 0.20 \
-            -s {params.fwd} \
-            -e {params.rev} \
+            -a {params.adapters_file} \
             --length_required 500 \
             --length_limit 2500 \
             --verbose \
@@ -180,7 +189,7 @@ rule trim_adapters:
 
 TABLE_INPUT = {
     'raw_stats': RAW_BARCODES_DIR,
-    'trimmed_stats': TRIMMED_BARCODES_DIR
+    'trimmed_adapters_stats': TRIMMED_ADAPTERS_DIR
 }
 
 rule get_seqkit_stats:

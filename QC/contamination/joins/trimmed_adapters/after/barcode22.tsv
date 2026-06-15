@@ -1,0 +1,2 @@
+seqID	read_len	patternName	pattern	strand	start	end	matched	rel_start	rel_end
+b6b29288-6b21-4b0c-981e-a8bce5758eac	1084	NA_bottom	ACGTAACTGAACGAAGTACAGG	-	5	26	ACGTAACTGAACGAAGAAACGG	0.461255	2.39852

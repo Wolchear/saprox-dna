@@ -32,9 +32,9 @@
 	"adapter_cutting": {
 		"adapter_trimmed_reads": 3,
 		"adapter_trimmed_bases": 128,
-		"read_start_adapter": "TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT",
-		"read_end_adapter": "ACGTAACTGAACGAAGTACAGG",
-		"read_adapter_counts": {"TTTCCTGTACTTCGTTCAGTTACGTATTGCT":1, "TTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":1, "TTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT":1}
+		"read_start_adapter": "unspecified",
+		"read_end_adapter": "unspecified",
+		"read_adapter_counts": {"CCTGTACTTCGTTCAGTTACGTATTGCT":3}
 	},
 	"read_before_filtering": {
 		"total_reads": 4,
@@ -212,5 +212,5 @@
 			"GGGAA":3,			"GGGAT":3,			"GGGAC":1,			"GGGAG":3,			"GGGTA":0,			"GGGTT":7,			"GGGTC":0,			"GGGTG":7,			"GGGCA":2,			"GGGCT":3,			"GGGCC":4,			"GGGCG":0,			"GGGGA":2,			"GGGGT":5,			"GGGGC":0,			"GGGGG":5
 		}
 	},
-	"command": "fastplong -i data/merged_barcodes/barcode18.fastq.gz -o data/trimmed_barcodes/barcode18.fastq.gz --thread 2 -d 0.20 -s TTTTTTTTCCTGTACTTCGTTCAGTTACGTATTGCT -e ACGTAACTGAACGAAGTACAGG --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode18.json --html QC/trimming_reports/barcode18.html "
+	"command": "fastplong -i data/merged_barcodes/barcode18.fastq.gz -o data/trimmed_adapters/barcode18.fastq.gz --thread 2 -d 0.20 -a config/adapters.fasta --length_required 500 --length_limit 2500 --verbose --json QC/trimming_reports/barcode18.json --html QC/trimming_reports/barcode18.html "
 }

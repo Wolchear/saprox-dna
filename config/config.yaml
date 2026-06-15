@@ -15,7 +15,9 @@ data:
     raw: "raw"
     barcodes: 'merged_barcodes'
     references: "references"
-    trimmed: 'trimmed_barcodes'
+    trimmed_barcodes: 'trimmed_barcodes'
+    trimmed_adapters: "trimmed_adapters"
+    trimmed_primers: "trimmed_primers"
 
 workflow:
   base_root: "workflow"
