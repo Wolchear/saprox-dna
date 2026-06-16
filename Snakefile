@@ -42,12 +42,26 @@ FILTERED_BARCODES = expand(
     barcode = BARCODE_IDS
 )
 
+EXCLUDE_BARCODES = ["barcode07", "barcode18"]
+
+ANALYSIS_BARCODES = [
+    b for b in BARCODE_IDS
+    if b not in EXCLUDE_BARCODES
+]
+
+CONSESUS_FILES = expand(
+    "{consensus_dir}/{barcode}/consensusfile.fasta",
+    consensus_dir = get_path(config['output'], 'amplicon_sort'),
+    barcode = ANALYSIS_BARCODES
+)
+
 rule all:
     input:
         STAT_TABLES,
         JOINS_PLOTS,
         NANOPLOTS,
-        FILTERED_BARCODES
+        FILTERED_BARCODES,
+        CONSESUS_FILES
 
 RULES_DIR = get_path(config['workflow'], "rules")
 
@@ -55,3 +69,9 @@ module process_raw_data:
     snakefile: f"{RULES_DIR}/process_raw_data.smk"
     config: config
 use rule * from process_raw_data
+
+
+module amplicon_classification:
+    snakefile: f"{RULES_DIR}/amplicon_classification.smk"
+    config: config
+use rule * from amplicon_classification

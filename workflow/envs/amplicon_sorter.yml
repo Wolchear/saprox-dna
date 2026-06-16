@@ -1,3 +1,4 @@
+name: amplicon
 channels:
   - conda-forge
   - bioconda

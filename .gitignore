@@ -4,5 +4,5 @@ seq6_nikita_fungiITS*
 
 data/*
 logs/*
-
+output/*
 __pycache__

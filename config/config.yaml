@@ -28,6 +28,7 @@ workflow:
     scripts: "scripts"
     lib: "lib"
     envs: 'envs'
+    external: 'external'
 
 qc:
   base_root: 'QC'
@@ -43,4 +44,4 @@ qc:
 output:
   base_root: "output"
   dirs:
-    pass: 'pass'
+    amplicon_sort: 'amplicon_consensus'
