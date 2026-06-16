@@ -55,13 +55,19 @@ CONSESUS_FILES = expand(
     barcode = ANALYSIS_BARCODES
 )
 
+KRAKEN_REPORTS = expand(
+    "{kraken_dir}/{barcode}/report.tsv",
+    kraken_dir = get_path(config['output'], 'amplicons_classification'),
+    barcode = ANALYSIS_BARCODES
+)
+
 rule all:
     input:
         STAT_TABLES,
         JOINS_PLOTS,
         NANOPLOTS,
         FILTERED_BARCODES,
-        CONSESUS_FILES
+        KRAKEN_REPORTS
 
 RULES_DIR = get_path(config['workflow'], "rules")
 

@@ -7,7 +7,8 @@ adapters:
   "top-core": "CCTGTACTTCGTTCAGTTACGTATTGCT"
   "bottom": "ACGTAACTGAACGAAGTACAGG"
 
-
+#source https://benlangmead.github.io/aws-indexes/k2
+kraken_db: https://genome-idx.s3.amazonaws.com/kraken/k2_pluspf_16_GB_20260226.tar.gz
 
 data:
   base_root: "data"
@@ -19,6 +20,7 @@ data:
     trimmed_adapters: "trimmed_adapters"
     trimmed_primers: "trimmed_primers"
     filtered_barcodes: "filtered_barcodes"
+    kraken_db: "kraken_db"
 
 
 workflow:
@@ -45,3 +47,4 @@ output:
   base_root: "output"
   dirs:
     amplicon_sort: 'amplicon_consensus'
+    amplicons_classification: 'amplicons_classification'
