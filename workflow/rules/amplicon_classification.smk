@@ -34,6 +34,11 @@ rule sort_amplicons:
             -o {params.outdir} \
             -np {threads} \
             --compressed \
+            -maxr 1000000000000 \
+            --allreads \
+            -sg 99.0 \
+            -ss 99.0 \
+            -sc 99.0 \
             > {log} 2>&1
         """
 

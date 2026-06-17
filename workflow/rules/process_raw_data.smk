@@ -185,8 +185,8 @@ rule trim_ends:
         f"{RAW_BARCODES_DIR}/{{barcode}}.fastq.gz"
     output:
         fasta = f"{TRIMMED_ADAPTERS_DIR}/{{barcode}}.fastq.gz",
-        json = f"{REPORTS_DIR}/{{barcode}}.json",
-        html = f"{REPORTS_DIR}/{{barcode}}.html",
+        json = f"{REPORTS_DIR}/trim_ends/{{barcode}}.json",
+        html = f"{REPORTS_DIR}/trim_ends/{{barcode}}.html",
     threads: max(1, config['max_threads'] // 2)
     conda:
         '../envs/process_raw_data.yml'
