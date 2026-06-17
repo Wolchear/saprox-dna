@@ -1,0 +1,73 @@
+100.00	80	0	R	1	root
+100.00	80	2	R1	131567	  cellular organisms
+ 52.50	42	0	D	2	    Bacteria
+ 52.50	42	0	K	1783272	      Bacillati
+ 52.50	42	0	P	201174	        Actinomycetota
+ 52.50	42	0	C	1760	          Actinomycetes
+ 52.50	42	0	O	2037	            Actinomycetales
+ 52.50	42	0	F	2049	              Actinomycetaceae
+ 52.50	42	0	G	1654	                Actinomyces
+ 52.50	42	42	S	544580	                  Actinomyces oris
+ 45.00	36	0	D	2759	    Eukaryota
+ 45.00	36	0	D1	33154	      Opisthokonta
+ 45.00	36	0	K	4751	        Fungi
+ 45.00	36	1	K1	451864	          Dikarya
+ 30.00	24	0	P	5204	            Basidiomycota
+ 28.75	23	3	P1	5302	              Agaricomycotina
+ 20.00	16	0	C	155619	                Agaricomycetes
+ 20.00	16	0	C1	452333	                  Agaricomycetidae
+ 20.00	16	2	O	5338	                    Agaricales
+ 16.25	13	0	O1	2982305	                      Agaricineae
+ 16.25	13	0	F	40562	                        Strophariaceae
+ 16.25	13	0	G	71950	                          Psilocybe
+ 16.25	13	13	S	181762	                            Psilocybe cubensis
+  1.25	1	0	O1	2982316	                      Marasmiineae
+  1.25	1	0	F	654128	                        Marasmiaceae
+  1.25	1	0	G	34448	                          Marasmius
+  1.25	1	1	S	181124	                            Marasmius oreades
+  5.00	4	0	C	155616	                Tremellomycetes
+  5.00	4	0	O	5234	                  Tremellales
+  5.00	4	0	F	1884633	                    Cryptococcaceae
+  5.00	4	4	G	490731	                      Kwoniella
+  1.25	1	0	P1	452284	              Ustilaginomycotina
+  1.25	1	0	C	1538075	                Malasseziomycetes
+  1.25	1	0	O	162474	                  Malasseziales
+  1.25	1	0	F	742845	                    Malasseziaceae
+  1.25	1	0	G	55193	                      Malassezia
+  1.25	1	1	S	76775	                        Malassezia restricta
+ 13.75	11	0	P	4890	            Ascomycota
+ 13.75	11	1	P1	716545	              saccharomyceta
+  8.75	7	0	P2	147538	                Pezizomycotina
+  8.75	7	0	P3	716546	                  leotiomyceta
+  6.25	5	0	P4	715989	                    sordariomyceta
+  6.25	5	1	C	147550	                      Sordariomycetes
+  5.00	4	0	C1	222543	                        Hypocreomycetidae
+  5.00	4	1	O	5125	                          Hypocreales
+  3.75	3	0	F	34397	                            Clavicipitaceae
+  3.75	3	0	G	5529	                              Metarhizium
+  3.75	3	3	S	500148	                                Metarhizium brunneum
+  1.25	1	0	C	147545	                    Eurotiomycetes
+  1.25	1	0	C1	451871	                      Eurotiomycetidae
+  1.25	1	0	O	5042	                        Eurotiales
+  1.25	1	0	F	1131492	                          Aspergillaceae
+  1.25	1	0	G	5052	                            Aspergillus
+  1.25	1	1	S	1220207	                              Aspergillus puulaauensis
+  1.25	1	0	P4	715962	                    dothideomyceta
+  1.25	1	0	C	147541	                      Dothideomycetes
+  1.25	1	0	C1	451868	                        Pleosporomycetidae
+  1.25	1	0	O	92860	                          Pleosporales
+  1.25	1	0	O1	715340	                            Pleosporineae
+  1.25	1	0	F	28556	                              Pleosporaceae
+  1.25	1	0	G	5598	                                Alternaria
+  1.25	1	0	G1	2499262	                                  Alternaria sect. Porri
+  1.25	1	1	S	48095	                                    Alternaria dauci
+  3.75	3	0	P2	147537	                Saccharomycotina
+  2.50	2	0	C	3239874	                  Pichiomycetes
+  2.50	2	0	O	2916678	                    Serinales
+  1.25	1	1	F	27319	                      Metschnikowiaceae
+  1.25	1	1	F	766764	                      Debaryomycetaceae
+  1.25	1	0	C	3239873	                  Dipodascomycetes
+  1.25	1	0	O	3243772	                    Dipodascales
+  1.25	1	0	F	410830	                      Trichomonascaceae
+  1.25	1	0	G	410829	                        Sugiyamaella
+  1.25	1	1	S	796027	                          Sugiyamaella lignohabitans
