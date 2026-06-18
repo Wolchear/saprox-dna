@@ -48,3 +48,4 @@ output:
   dirs:
     amplicon_sort: 'amplicon_consensus'
     amplicons_classification: 'amplicons_classification'
+    adjusted_kraken_reports: 'adjusted_reports'

@@ -1,0 +1,158 @@
+0.07	1	1	U	0	unclassified
+99.93	1365	0	R	1	root
+99.93	1365	51	R1	131567	  cellular organisms
+73.87	1009	14	D	2	    Bacteria
+67.20	918	0	K	1783272	      Bacillati
+67.20	918	0	P	201174	        Actinomycetota
+67.20	918	0	C	1760	          Actinomycetes
+54.25	741	0	O	2037	            Actinomycetales
+54.25	741	0	F	2049	              Actinomycetaceae
+54.25	741	0	G	1654	                Actinomyces
+54.25	741	741	S	544580	                  Actinomyces oris
+12.96	177	0	O	85011	            Kitasatosporales
+12.96	177	0	F	2062	              Streptomycetaceae
+12.96	177	0	G	1883	                Streptomyces
+12.96	177	0	G1	2593676	                  unclassified Streptomyces
+12.96	177	177	S	477697	                    Streptomyces sp. T12
+5.64	77	0	K	3379134	      Pseudomonadati
+5.64	77	4	P	1224	        Pseudomonadota
+4.76	65	0	C	1236	          Gammaproteobacteria
+4.69	64	0	O	135614	            Lysobacterales
+4.69	64	0	F	32033	              Lysobacteraceae
+4.69	64	0	G	40323	                Stenotrophomonas
+4.69	64	0	G1	995085	                  Stenotrophomonas maltophilia group
+4.69	64	64	S	40324	                    Stenotrophomonas maltophilia
+0.07	1	0	O	72274	            Pseudomonadales
+0.07	1	0	F	135621	              Pseudomonadaceae
+0.07	1	1	G	286	                Pseudomonas
+0.59	8	0	C	28216	          Betaproteobacteria
+0.59	8	0	O	80840	            Burkholderiales
+0.59	8	0	F	80864	              Comamonadaceae
+0.59	8	0	G	12916	                Acidovorax
+0.59	8	0	G1	2684926	                  unclassified Acidovorax
+0.59	8	8	S	3273430	                    Acidovorax sp. BLS4
+22.33	305	0	D	2759	    Eukaryota
+22.11	302	0	D1	33154	      Opisthokonta
+22.04	301	0	K	4751	        Fungi
+22.04	301	0	K1	451864	          Dikarya
+16.47	225	1	P	5204	            Basidiomycota
+14.57	199	0	P1	452284	              Ustilaginomycotina
+14.57	199	0	C	1538075	                Malasseziomycetes
+14.57	199	0	O	162474	                  Malasseziales
+14.57	199	0	F	742845	                    Malasseziaceae
+14.57	199	2	G	55193	                      Malassezia
+14.42	197	197	S	76775	                        Malassezia restricta
+1.76	24	4	P1	5302	              Agaricomycotina
+0.95	13	0	C	155616	                Tremellomycetes
+0.95	13	0	O	5234	                  Tremellales
+0.95	13	0	F	1884633	                    Cryptococcaceae
+0.95	13	13	G	490731	                      Kwoniella
+0.51	7	0	C	155619	                Agaricomycetes
+0.37	5	0	C1	452333	                  Agaricomycetidae
+0.37	5	3	O	5338	                    Agaricales
+0.15	2	0	O1	2982305	                      Agaricineae
+0.15	2	0	F	40562	                        Strophariaceae
+0.15	2	0	G	71950	                          Psilocybe
+0.15	2	2	S	181762	                            Psilocybe cubensis
+0.15	2	0	C1	355688	                  Agaricomycetes incertae sedis
+0.15	2	0	O	36064	                    Cantharellales
+0.15	2	0	F	5250	                      Ceratobasidiaceae
+0.15	2	0	G	1322061	                        Rhizoctonia
+0.15	2	2	S	456999	                          Rhizoctonia solani
+0.07	1	0	P1	29000	              Pucciniomycotina
+0.07	1	0	C	162484	                Pucciniomycetes
+0.07	1	0	O	5258	                  Pucciniales
+0.07	1	0	F	5262	                    Pucciniaceae
+0.07	1	0	G	5296	                      Puccinia
+0.07	1	0	S	27350	                        Puccinia striiformis
+0.07	1	1	S1	168172	                          Puccinia striiformis f. sp. tritici
+5.56	76	0	P	4890	            Ascomycota
+5.56	76	0	P1	716545	              saccharomyceta
+3.95	54	0	P2	147538	                Pezizomycotina
+3.95	54	0	P3	716546	                  leotiomyceta
+3.95	54	1	P4	715989	                    sordariomyceta
+3.88	53	0	C	147550	                      Sordariomycetes
+2.78	38	0	C1	222543	                        Hypocreomycetidae
+2.78	38	8	O	5125	                          Hypocreales
+2.12	29	0	F	110618	                            Nectriaceae
+2.12	29	0	G	5506	                              Fusarium
+1.61	22	22	G1	569360	                                Fusarium sambucinum species complex
+0.51	7	4	G1	232080	                                Fusarium solani species complex
+0.22	3	3	S	1328300	                                  Fusarium keratoplasticum
+0.07	1	0	F	474943	                            Cordycipitaceae
+0.07	1	0	G	150366	                              Akanthomyces
+0.07	1	1	S	2231603	                                Akanthomyces muscarius
+1.10	15	0	C1	222544	                        Sordariomycetidae
+1.10	15	0	O	5139	                          Sordariales
+1.10	15	0	F	2609812	                            Podosporaceae
+1.10	15	14	G	5144	                              Podospora
+0.07	1	1	S	2093779	                                Podospora pseudocomata
+1.61	22	0	P2	147537	                Saccharomycotina
+1.54	21	0	C	4891	                  Saccharomycetes
+1.54	21	0	O	4892	                    Saccharomycetales
+1.54	21	2	F	4893	                      Saccharomycetaceae
+0.81	11	3	G	4910	                        Kluyveromyces
+0.59	8	8	S	28985	                          Kluyveromyces lactis
+0.37	5	0	G	1196389	                        Zygotorulaspora
+0.37	5	5	S	42260	                          Zygotorulaspora mrakii
+0.22	3	0	G	33170	                        Eremothecium
+0.22	3	0	S	33169	                          Eremothecium gossypii
+0.22	3	3	S1	284811	                            Eremothecium gossypii ATCC 10895
+0.07	1	0	C	3239874	                  Pichiomycetes
+0.07	1	1	O	2916678	                    Serinales
+0.07	1	0	K	33208	        Metazoa
+0.07	1	0	K1	6072	          Eumetazoa
+0.07	1	0	K2	33213	            Bilateria
+0.07	1	0	K3	33511	              Deuterostomia
+0.07	1	0	P	7711	                Chordata
+0.07	1	0	P1	89593	                  Craniata
+0.07	1	0	P2	7742	                    Vertebrata
+0.07	1	0	P3	7776	                      Gnathostomata
+0.07	1	0	P4	117570	                        Teleostomi
+0.07	1	0	P5	117571	                          Euteleostomi
+0.07	1	0	P6	8287	                            Sarcopterygii
+0.07	1	0	P7	1338369	                              Dipnotetrapodomorpha
+0.07	1	0	P8	32523	                                Tetrapoda
+0.07	1	0	P9	32524	                                  Amniota
+0.07	1	0	C	40674	                                    Mammalia
+0.07	1	0	C1	32525	                                      Theria
+0.07	1	0	C2	9347	                                        Eutheria
+0.07	1	0	C3	1437010	                                          Boreoeutheria
+0.07	1	0	C4	314146	                                            Euarchontoglires
+0.07	1	0	O	9443	                                              Primates
+0.07	1	0	O1	376913	                                                Haplorrhini
+0.07	1	0	O2	314293	                                                  Simiiformes
+0.07	1	0	O3	9526	                                                    Catarrhini
+0.07	1	0	O4	314295	                                                      Hominoidea
+0.07	1	0	F	9604	                                                        Hominidae
+0.07	1	0	F1	207598	                                                          Homininae
+0.07	1	0	G	9605	                                                            Homo
+0.07	1	1	S	9606	                                                              Homo sapiens
+0.15	2	0	D1	2698737	      Sar
+0.07	1	0	D2	33630	        Alveolata
+0.07	1	0	P	5794	          Apicomplexa
+0.07	1	0	C	422676	            Aconoidasida
+0.07	1	0	O	5863	              Piroplasmida
+0.07	1	0	F	27994	                Theileriidae
+0.07	1	0	G	5873	                  Theileria
+0.07	1	0	S	5872	                    Theileria equi
+0.07	1	1	S1	1537102	                      Theileria equi strain WA
+0.07	1	0	D2	33634	        Stramenopiles
+0.07	1	0	D3	2696291	          Ochrophyta
+0.07	1	0	P	2836	            Bacillariophyta
+0.07	1	0	C	33836	              Coscinodiscophyceae
+0.07	1	0	C1	33846	                Thalassiosirophycidae
+0.07	1	0	O	33847	                  Thalassiosirales
+0.07	1	0	F	29202	                    Thalassiosiraceae
+0.07	1	0	G	35127	                      Thalassiosira
+0.07	1	0	S	35128	                        Thalassiosira pseudonana
+0.07	1	1	S1	296543	                          Thalassiosira pseudonana CCMP1335
+0.07	1	0	D1	554915	      Amoebozoa
+0.07	1	0	P	2605435	        Evosea
+0.07	1	0	C	142796	          Eumycetozoa
+0.07	1	0	C1	33083	            Dictyostelia
+0.07	1	0	O	2058949	              Dictyosteliales
+0.07	1	0	F	2058185	                Dictyosteliaceae
+0.07	1	0	G	5782	                  Dictyostelium
+0.07	1	0	S	44689	                    Dictyostelium discoideum
+0.07	1	1	S1	352472	                      Dictyostelium discoideum AX4

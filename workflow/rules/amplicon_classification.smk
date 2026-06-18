@@ -7,12 +7,14 @@ BARCODE_IDS = samples["barcode"].tolist()
 FILTERED_BARCODES_DIR= get_path(config['data'], 'filtered_barcodes')
 CONSENSUS_DIR = get_path(config['output'], 'amplicon_sort')
 AMPLICONS_CLASSIFICATION_DIR = get_path(config['output'], 'amplicons_classification')
+ADJUSTED_REPORTS_DIR = get_path(config['output'], 'adjusted_kraken_reports')
 
 EXTERNAL = get_path(config['workflow'], 'external')
 SCRIPTS = get_path(config['workflow'], 'scripts')
 
 KRAKEN_LINK = config['kraken_db']
 KRAKEN_DB_DIR = get_path(config['data'], 'kraken_db')
+
 
 rule sort_amplicons:
     input:
@@ -130,4 +132,25 @@ rule classify_amplicons:
             --memory-mapping \
             --report {output.report} \
             {input.amplicon_fasta} > {log} 2>&1
+        """
+
+rule adjust_report:
+    input:
+        report = f"{AMPLICONS_CLASSIFICATION_DIR}/{{barcode}}/report.tsv",
+        kraken_output = f"{AMPLICONS_CLASSIFICATION_DIR}/{{barcode}}/kraken_output.tsv"
+    output:
+        f"{ADJUSTED_REPORTS_DIR}/{{barcode}}_report.tsv",
+    threads: 1
+    conda:
+        '../envs/kraken.yml'
+    log:
+        f"logs/amplicon_classification/adjust_report/{{barcode}}.log"
+    params:
+        script = f"{SCRIPTS}/adjust_weights_to_kraken_report.py"
+    shell:
+        r"""
+        python3 {params.script} \
+            --kraken-output {input.kraken_output} \
+            --report {input.report} \
+            --out {output} > {log} 2>&1
         """

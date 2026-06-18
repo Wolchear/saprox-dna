@@ -5,4 +5,8 @@ seq6_nikita_fungiITS*
 data/*
 logs/*
 *.fasta
+*.gz
+*.fasta
+output/amplicon_consensus/*
+output/*.txt
 __pycache__
