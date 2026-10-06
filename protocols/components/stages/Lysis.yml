@@ -1,0 +1,64 @@
+name: "Tissue lysis"
+
+prerequisites:
+  reagents:
+    - ref: "ctab_buffer"
+    - ref: "beta_mercaptoethanol"
+    - ref: "proteinase_k"
+    - ref: "ph_cl_i"
+
+notes:
+  warnings:
+    - "Work only under the hood on this stage"
+    - "Make shure you have enought reagents and tubes"
+    - "Avoid opening several tubes on the same time. Minize cross-contamination."
+
+steps:
+  - description: "Turn on the incubator, set temeprature to 65C"
+  - description: "Prepare working solution"
+    notes:
+      suggestions:
+        - "Take new 50ml tube"
+        - "Add 1200 ul per sample + 10% of CTAB buffer"
+        - "Add 20 ul per sample + 10% of BME"
+        - "Add 20 ul per sample + 10% of proteinase K"
+
+  - description: "Add 1240ul of working solution to each sample"
+    notes:
+      suggestions:
+        - "Add 620ul twice"
+        - "Use reverse pipeting technique to minimize 1000ul tip usage and increase precision"
+
+  - description: "Close the tube, mix well by inverting the tube repeatedly"
+    notes:
+      warnings:
+        - "Do not use the vortex since that can break the DNA fragments!"
+
+  - description: "Take the tubes to the incubator and place them in the rotary plate with the rubber bands. Incubate the samples for 1h at 65C while rotating."
+    notes:
+      suggestions:
+       - "Label new 1.5ml tubes while waiting"
+      warnings:
+       - "Make sure all tubes are VERY WELL CLOSED before placing them on the rotating plate and before starting rotation."
+       - "Every couple of minutes, make sure the samples are mixing well ( invert a few times if not)."
+  - description: "Centrifuge all samples 10,000g for 15 minutes at room temperature, to precipitate the leftover wood and cell walls"
+  - description: "Take the samples to the hood, set a 1000ul pipette to 640ul (more if you added more CTAB and other reagents), slowly transfer the supernatant to a clean, new 1.5ml tube already labelled"
+    notes:
+     suggestions:
+      - "If you have more than 600ul of supernatant, you can split the volume into equal parts and separate tubes (e.g. you have 700ul, you can transfer 350ul to each tube for a total of two tubes - these will be replicates)"
+     warnings:
+      - "Transfer as much liquid as possible while avoiding debris"
+  - description: "Add 1 volume (if you have 640ul supernatant, add 640ul Ph:Ch:Is) of Phenol:Chloroform:Isoamyl alcohol, close the tube, and immediately mix by inverting the tube until everything is more or less homogenized"
+  - description: "Centrifuge at 12,000g for a minimum of 30 minutes at room temperature. You should be able to see two liquid phases completely separated."
+    notes:
+     suggestions:
+      - "Label new 1.5ml tubes while waiting"
+      - "If the upper phase is cloudy, centrifuge for a bit longer."
+  - description: "Take the samples to the hood very carefully, avoid re-mixing the phases. Don’t shake the tubes or move them harshly."
+  - description: "Transfer the upper aqueous phase to a new 1.5ml tube labelled properly"
+    notes:
+     warnings:
+      - "Don't disturb the interface!"
+      - "If the aqueous phase has a noticeable colour, you need to repeat the Ph:Ch:Is steps"
+     suggestions:
+      - "Be conservative and, if needed, leave some of the upper phase behind to avoid carrying over chloroform contamination or white cloudy liquid from the interface between the aqueous and organic phases"

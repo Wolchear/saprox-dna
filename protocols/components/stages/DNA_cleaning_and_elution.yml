@@ -1,0 +1,39 @@
+name: "DNA cleaning and elution"
+
+prerequisites:
+  reagents:
+    - ref: "ethanol_70"
+
+
+steps:
+ - description: "Cool the centrifuge by selecting 5C and pre-centrifuging for 20 minutes without samples"
+ - description: "Centrifuge the samples at 5C and 15,000g for 20 minutes."
+ - description: "Place a tube with dd molecular water (clean and autoclave) in the incubator at 37C, or in the heating block at 37C."
+ - description: "Carefully remove the tubes from the centrifuge. Identify the pellet (if visible, it will be on the same side of the tube as the hinge - centrifugal forces!)."
+ - description: "Without disturbing the pellet, dispose of the isopropanol in a beaker."
+ - description: "Incubate the samples for one and a half hours at 4C (fridge)"
+ - description: "Add 500ul of freezer cold 70% ethanol to each sample, invert the tube gently a few times."
+ - description: "Incubate for >three hour in the fridge (4C)"
+ - description: "Centrifuge at 12,000g for 20 minutes at 5C"
+   notes:
+    warnings:
+     - "Place them in the centrifuge with the hinge of the tube pointing outwards."
+ - description: "Without disturbing the pellet, dispose of the ethanol in a beaker"
+   notes:
+    suggestions:
+     - "Do it slowly, the pellet contains your DNA and you don’t want it to dislodge from the tube wal"
+ - description: "Spin down the tubes to push to the bottom any residual ethanol remaining in the tube walls."
+ - description: "If you can see the pellet, you can use a 10ul tip to remove the remaining ethanol as long as you don’t touch the walls or the pellet."
+   notes:
+    warnings:
+     - "If you don’t see the pellet, don't try doing it."
+ - description: "Let the tubes with the lid open, ideally in the hood with laminar flow going"
+ - description: "Incubate at room temperature for 15 minutes to allow for remaining ethanol to evaporate"
+   notes:
+    suggestions:
+     - "You can monitor the pellet, if it looks dry and there are no droplets in the tube’s wall, you can proceed"
+    warnings:
+     - "Don’t over dry the pellet as it will be hard to resuspend the DNA."
+ - description: "Add 35ul of the pre-heated molecular water (37C) to each tube to resuspend the pellet"
+ - description: "Incubate at 37C for 15 minutes or more (not longer than half hour) until you no longer see the pellet (all DNA should be resuspended into the water)"
+ - description: "Proceed to DNA quantification or long-term storage at -20C"

@@ -1,0 +1,32 @@
+id: proteinase_k
+name: "Proteinase K"
+description: null
+
+recipe:
+  final_volume:
+    value: 1
+    unit: "ml"
+
+  reagents:
+    - name: "Proteinase K powder"
+      amount:
+        value: 20
+        unit: "mg"
+      description: null
+
+    - name: "Double-distilled autoclaved molecular-grade water"
+      amount:
+        value: 1
+        unit: "ml"
+      description: null
+
+  steps:
+    - "Use an autoclaved and clean 1.5 ml tube."
+    - "Place the empty tube on the ultra-precision balance and tare the balance."
+    - "Add Proteinase K powder to the tube until approximately 20 mg (0.02 g) is reached."
+    - "Add 1 ml of double-distilled autoclaved molecular-grade water."
+    - "Mix until the Proteinase K is fully dissolved."
+  
+  notes:
+    suggestions:
+      - "Add the Proteinase K powder gradually and reweigh the tube until approximately 20 mg is reached."

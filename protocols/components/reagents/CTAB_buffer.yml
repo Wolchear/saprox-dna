@@ -1,0 +1,43 @@
+id: ctab_buffer
+name: "CTAB"
+description: null
+
+recipe:
+  final_volume:
+    value: 500
+    unit: "ml"
+
+  reagents:
+    - name: "CTAB powder"
+      amount:
+        value: 10
+        unit: "g"
+
+    - name: "NaCl"
+      amount:
+        value: 41.908
+        unit: "g"
+      description: null
+
+    - name: "Tris-HCl"
+      amount:
+        value: 6.057
+        unit: "g"
+      description: null
+
+    - name: "EDTA"
+      amount:
+        value: 2.923
+        unit: "g"
+      description: null
+
+  steps:
+    - "Add a magnetic stir bar to the autoclaved glass bottle."
+    - "Place the bottle on the stirrer/heating plate. Do not exceed 60 °C."
+    - "Add each component one by one, allowing each to dissolve completely before adding the next."
+    - "Bring the final volume to 500 ml with distilled water."
+    - "Continue stirring/heating until the solution is clear."
+  
+  notes:
+    suggestions:
+      - "Dissolution may take up to a few days. Leave it on the heat, do not close the lid tight while mixing."

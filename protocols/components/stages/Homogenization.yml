@@ -1,0 +1,32 @@
+name: "Wood Homogenization"
+
+notes:
+ suggestions:
+  - "The typical workflow should be: enter the room, place/collect the sample, and leave ~30 sec"
+ warnings:
+  - "Do not remain in the room during, after, or between homogenization runs."
+  - "Chronic exposure to fine wood dust can seriously damage your lungs."
+
+
+steps:
+ - description: "Setup homogenization mode: (5 minutes homogenization, 1 min rest ) <- 4 cycles"
+ - description: "Prepare/Check if container, spoon, beads are ready for homogenization."
+   notes:
+      suggestions:
+       - "Clean with soap and water if not."
+ - description: "Take the samples from the -80C freezer (beware the ultra cold temperatures)."
+ - description: "Fill ~0.5 of container volume with wood material and beads."
+   notes:
+    warnings:
+     - "Make sure that the gasket between the lid and the container is in place"
+ - description: "Then return the sample tube to -80C freezer"
+   notes:
+      suggestions:
+       - "You can do it on the the way to lab with homogenizer."
+ - description: "Place the container while holding the lid in place, then tighten the clamp as much as possible"
+ - description: "Close the homogenizer lid and press 'Start.'"
+ - description: "After homogenization, take the container and move it under the hood with the airflow turned on"
+ - description: "Transfer the contents into a clean 50 mL tube"
+ - description: "Put the tube into the fridge and let it cool. After that, put under -80C"
+ - description: "Clean the hood to remove any remaining wood particles, then increase the hood airflow. Reduce it again at step 4."
+ - description: "Repeat from step 2"

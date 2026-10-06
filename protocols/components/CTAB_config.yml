@@ -1,0 +1,24 @@
+title: "DNA extraction from wood samples using CTAB buffers"
+metadata:
+  description: "CTAB buffer for fungi, plants, and insects using the 500ml CTAB stock"
+  author: Nikita Pavliukovec
+  sources:
+    - "dx.doi.org/10.17504/protocols.io.bg6wjzfe"
+    - "With modifications from dx.doi.org/10.17504/protocols.io.bwr8pd9w and myself (who?)"
+    - "https://doi.org/10.1002/aps3.70028 - possible optimizations"
+    - "https://doi.org/10.1515/biol-2022-1006 - sodium acetate from here"
+
+reagents:
+  - "B-meth.yml"
+  - "CTAB_buffer.yml"
+  - "Proteinase_K.yml"
+  - "phenol_cloroform_isomail.yml"
+  - "isopropanol.yml"
+  - "sodium_acetate.yml"
+  - "ethanol_70.yml"
+
+stages:
+  - "Homogenization.yml"
+  - "Lysis.yml"
+  - "DNA_precipitation.yml"
+  - "DNA_cleaning_and_elution.yml"

@@ -1,0 +1,8 @@
+id: "ph_cl_i"
+name: "Phenol Cloroform Isomail"
+notes:
+  warnings:
+    - "Always work under the hood"
+    - "Do not touch without gloves"
+    - "Do not inhale the fumes"
+    - "Clean hands with soap after usage"

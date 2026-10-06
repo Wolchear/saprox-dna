@@ -1,0 +1,14 @@
+name: "DNA precipitation"
+
+prerequisites:
+  reagents:
+    - ref: "isopropanol"
+    - ref: "na_acetate"
+
+
+steps:
+ - description: "Add 1/10 volume (~60ul) of 3M Sodium Acetate (pH8) for a concentration of 0.3M after mixing with the sample."
+ - description: "Mix well by inverting the tube."
+ - description: "Immediately after, add 1 volume (~600ul) of ice cold isopropanol."
+ - description: "Mix it by gently inverting the tube multiple times."
+ - description: "Incubate the samples for one and a half hours at 4C (fridge)"
