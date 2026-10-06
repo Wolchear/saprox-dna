@@ -3,6 +3,7 @@ name: "DNA cleaning and elution"
 prerequisites:
   reagents:
     - ref: "ethanol_70"
+    - ref: "ethanol_90"
 
 
 steps:
@@ -11,10 +12,8 @@ steps:
  - description: "Place a tube with dd molecular water (clean and autoclave) in the incubator at 37C, or in the heating block at 37C."
  - description: "Carefully remove the tubes from the centrifuge. Identify the pellet (if visible, it will be on the same side of the tube as the hinge - centrifugal forces!)."
  - description: "Without disturbing the pellet, dispose of the isopropanol in a beaker."
- - description: "Incubate the samples for one and a half hours at 4C (fridge)"
  - description: "Add 500ul of freezer cold 70% ethanol to each sample, invert the tube gently a few times."
- - description: "Incubate for >three hour in the fridge (4C)"
- - description: "Centrifuge at 12,000g for 20 minutes at 5C"
+ - description: "Centrifuge at 12,000g for 15 minutes at 5C"
    notes:
     warnings:
      - "Place them in the centrifuge with the hinge of the tube pointing outwards."
@@ -22,6 +21,7 @@ steps:
    notes:
     suggestions:
      - "Do it slowly, the pellet contains your DNA and you don’t want it to dislodge from the tube wal"
+ - description: "Repeat wash one more time with 90% ethanol"
  - description: "Spin down the tubes to push to the bottom any residual ethanol remaining in the tube walls."
  - description: "If you can see the pellet, you can use a 10ul tip to remove the remaining ethanol as long as you don’t touch the walls or the pellet."
    notes:

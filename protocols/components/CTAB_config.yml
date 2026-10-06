@@ -16,6 +16,7 @@ reagents:
   - "isopropanol.yml"
   - "sodium_acetate.yml"
   - "ethanol_70.yml"
+  - "ethanol_90.yml"
 
 stages:
   - "Homogenization.yml"
