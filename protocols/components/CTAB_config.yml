@@ -12,7 +12,7 @@ reagents:
   - "B-meth.yml"
   - "CTAB_buffer.yml"
   - "Proteinase_K.yml"
-  - "phenol_cloroform_isomail.yml"
+  - "phenol_chloroform_isomail.yml"
   - "isopropanol.yml"
   - "sodium_acetate.yml"
   - "ethanol_70.yml"

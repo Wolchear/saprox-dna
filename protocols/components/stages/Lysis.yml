@@ -5,13 +5,13 @@ prerequisites:
     - ref: "ctab_buffer"
     - ref: "beta_mercaptoethanol"
     - ref: "proteinase_k"
-    - ref: "ph_cl_i"
+    - ref: "ph_ch_i"
 
 notes:
   warnings:
     - "Work only under the hood on this stage"
-    - "Make shure you have enought reagents and tubes"
-    - "Avoid opening several tubes on the same time. Minize cross-contamination."
+    - "Make sure you have enought reagents and tubes"
+    - "Avoid opening several tubes at the same time. Minimize cross-contamination."
 
 steps:
   - description: "Turn on the incubator, set temeprature to 65C"

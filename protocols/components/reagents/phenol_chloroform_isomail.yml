@@ -1,5 +1,5 @@
-id: "ph_cl_i"
-name: "Phenol Cloroform Isomail"
+id: "ph_ch_i"
+name: "Phenol Chloroform Isomail"
 notes:
   warnings:
     - "Always work under the hood"

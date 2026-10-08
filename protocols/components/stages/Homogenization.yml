@@ -22,7 +22,7 @@ steps:
  - description: "Then return the sample tube to -80C freezer"
    notes:
       suggestions:
-       - "You can do it on the the way to lab with homogenizer."
+       - "You can do it on the way to the lab with homogenizer."
  - description: "Place the container while holding the lid in place, then tighten the clamp as much as possible"
  - description: "Close the homogenizer lid and press 'Start.'"
  - description: "After homogenization, take the container and move it under the hood with the airflow turned on"
