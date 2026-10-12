@@ -1,0 +1,25 @@
+max_threads: 4
+
+
+
+data:
+  base_root: "data"
+  ssu_raw: https://www.arb-silva.de/fileadmin/silva_databases/release_144/Exports/SILVA_144_SSUParc_tax_silva_trunc.fasta.gz
+  lsu_raw: https://www.arb-silva.de/fileadmin/silva_databases/release_138_2/Exports/SILVA_138.2_LSUParc_tax_silva.fasta.gz
+  dirs:
+    raw: "raw"
+
+workflow:
+  base_root: "workflow"
+  dirs:
+    rules: "rules"
+    scripts: "scripts"
+    lib: "lib"
+    envs: 'envs'
+
+output:
+  base_root: "output"
+  dirs:
+    fungi_aln: "fungi_aln"
+    tree_aln: "tree_aln"
+

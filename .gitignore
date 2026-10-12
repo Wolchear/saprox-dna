@@ -10,3 +10,7 @@ logs/*
 output/amplicon_consensus/*
 output/*.txt
 __pycache__
+
+primers_design/data/*
+primers_design/logs/*
+primers_design/.snakemake/*
