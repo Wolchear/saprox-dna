@@ -15,19 +15,19 @@ recipe:
 
     - name: "NaCl"
       amount:
-        value: 41.908
+        value: 40.908
         unit: "g"
       description: null
 
     - name: "Tris-HCl"
       amount:
-        value: 6.057
+        value: 7.88
         unit: "g"
       description: null
 
     - name: "EDTA"
       amount:
-        value: 2.923
+        value: 3.722
         unit: "g"
       description: null
 

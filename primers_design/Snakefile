@@ -16,10 +16,17 @@ SUBUNITS_RAW = expand(
     subunit = ["SSU", "LSU"]
 )
 
+ORGANISMS_RAW = expand(
+    "{raw_fata}/{subunit}_{organism}.fasta.gz",
+    raw_fata = get_path(config['data'], 'raw'),
+    subunit = ["SSU", "LSU"],
+    organism = ['fungi', 'trees']
+)
+
 rule all:
     input:
         SUBUNITS_RAW,
-        
+        ORGANISMS_RAW
         
 RULES_DIR = get_path(config['workflow'], "rules")
 
